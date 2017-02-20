@@ -1,15 +1,41 @@
 var React = require('react');
 var {Link, IndexLink} = require('react-router');
 
-var Nav = () => {
-	return (
-		<div>
-			<h2>NAV Component</h2>
-			<IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Запрос погоды</IndexLink>
-			<Link to="/about" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>О сайте</Link>
-			<Link to="/examples" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Примеры</Link>
-		</div>
-	);
-}
+var Nav = React.createClass({
+
+	onSearch: function(e) {
+		e.preventDefault();
+		console.log("Пока не готово!");
+	},
+
+	render: function() {
+		return (
+			<div className="top-bar">
+			  <div className="top-bar-left">
+			  	<ul className="menu">
+			  		<li className="menu-text">Mishka Web App</li>
+					<li>
+						<IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Запрос погоды</IndexLink>					
+					</li>
+					<li>
+						<Link to="/about" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>О сайте</Link>
+					</li>
+					<li>
+						<Link to="/examples" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Примеры</Link>
+					</li>
+			  	</ul>
+			  </div>
+			  <div className="top-bar-right">
+			  	<form onSubmit={this.onSearch}>
+			    <ul className="menu">
+			      <li><input type="search" placeholder="Запрос погоды"/></li>
+			      <li><input type="submit" className="button" value="Запросить"/></li>
+			    </ul>
+			   </form>
+			  </div>
+			</div>
+		);
+	}
+});
 
 module.exports = Nav;
